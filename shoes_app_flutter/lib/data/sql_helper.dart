@@ -1,4 +1,4 @@
-import 'package:path/path.dart';
+  import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DBHelper {
@@ -56,8 +56,17 @@ class DBHelper {
       Product_ID INTEGER PRIMARY KEY AUTOINCREMENT,
       Name NVARCHAR(255),
       Description TEXT,
-      Shop_ID INTEGER,
-      FOREIGN KEY (Shop_ID) REFERENCES Shop (Shop_ID)
+      Brand_ID INTEGER,
+      FOREIGN KEY (Brand_ID) REFERENCES Brand (Brand_ID)
+    );
+  ''');
+
+    await db.execute('''
+    CREATE TABLE Product_Image (
+      Product_Image_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+      Url_Image TEXT,
+      Product_ID INTEGER,
+      FOREIGN KEY (Product_ID) REFERENCES Product (Product_ID)
     );
   ''');
 
@@ -80,6 +89,7 @@ class DBHelper {
       Product_Color_ID INTEGER PRIMARY KEY AUTOINCREMENT,
       Color_ID INTEGER,
       Product_ID INTEGER,
+      Url_Image TEXT,
       FOREIGN KEY (Color_ID) REFERENCES Color (Color_ID),
       FOREIGN KEY (Product_ID) REFERENCES Product (Product_ID)
     );
@@ -139,6 +149,17 @@ class DBHelper {
   ''');
 
     await db.execute('''
+    CREATE TABLE Notification_Account (
+      Notification_ID INTEGER,
+      Account_ID INTEGER,
+      Status INTEGER,
+      PRIMARY KEY (Notification_ID, Account_ID),
+      FOREIGN KEY (Notification_ID) REFERENCES Notification (Notification_ID),
+      FOREIGN KEY (Account_ID) REFERENCES Account (Account_ID)
+    );
+  ''');
+
+    await db.execute('''
     CREATE TABLE Reservation (
       Reservation_ID INTEGER PRIMARY KEY AUTOINCREMENT,
       Reservation_date DATETIME,
@@ -171,17 +192,6 @@ class DBHelper {
     );
   ''');
 
-    await db.execute('''
-    CREATE TABLE Review (
-      Review_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-      Content TEXT,
-      Rating INTEGER,
-      Product_ID INTEGER,
-      Account_ID INTEGER,
-      FOREIGN KEY (Product_ID) REFERENCES Product (Product_ID),
-      FOREIGN KEY (Account_ID) REFERENCES Account (Account_ID)
-    );
-  ''');
 
     await db.execute('''
     CREATE TABLE Favorite (
@@ -192,45 +202,12 @@ class DBHelper {
       FOREIGN KEY (Account_ID) REFERENCES Account (Account_ID)
     );
   ''');
-
-    await db.execute('''
-    CREATE TABLE UserTransaction (
-      Transaction_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-      Transaction_Date DATETIME,
-      Amount INTEGER,
-      Account_ID INTEGER,
-      FOREIGN KEY (Account_ID) REFERENCES Account (Account_ID)
-    );
-  ''');
-
-    await db.execute('''
-    CREATE TABLE Payment_History (
-      Payment_History_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-      Payment_Method NVARCHAR(50),
-      Payment_Date DATETIME,
-      Amount INTEGER,
-      Account_ID INTEGER,
-      FOREIGN KEY (Account_ID) REFERENCES Account (Account_ID)
-    );
-  ''');
-
-    await db.execute('''
-    CREATE TABLE Product_Category (
-      Category_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-      Name NVARCHAR(255)
-    );
-  ''');
-
-    await db.execute('''
-    CREATE TABLE Product_In_Category (
-      Product_ID INTEGER,
-      Category_ID INTEGER,
-      PRIMARY KEY (Product_ID, Category_ID),
-      FOREIGN KEY (Product_ID) REFERENCES Product (Product_ID),
-      FOREIGN KEY (Category_ID) REFERENCES Product_Category (Category_ID)
-    );
-  ''');
+    await _insertData(db);
   }
+
+
+
+
 
   // CRUD methods for Shop table
   Future<int> createShop(Map<String, dynamic> shop) async {
@@ -452,6 +429,311 @@ class DBHelper {
     return await db.delete('Voucher', where: 'Voucher_ID = ?', whereArgs: [id]);
   }
 
+  // CRUD methods for Product Image table
+  Future<int> createProductImage(Map<String, dynamic> productImage) async {
+    final db = await instance.database;
+    return await db.insert('Product_Image', productImage);
+  }
+
+  Future<List<Map<String, dynamic>>> getProductImages() async {
+    final db = await instance.database;
+    return await db.query('Product_Image');
+  }
+
+  Future<int> updateProductImage(Map<String, dynamic> productImage) async {
+    final db = await instance.database;
+    final productImageId = productImage['Product_Image_ID'];
+    return await db.update('Product_Image', productImage,
+        where: 'Product_Image_ID = ?', whereArgs: [productImageId]);
+  }
+
+  Future<int> deleteProductImage(int id) async {
+    final db = await instance.database;
+    return await db.delete('Product_Image',
+        where: 'Product_Image_ID = ?', whereArgs: [id]);
+  }
+
+
+
+  Future<void> _insertData(Database db) async {
+    // Chèn dữ liệu vào bảng Shop
+    await db.insert('Shop', {
+      'Name': 'Erik Shoes',
+      'Description': 'Giày Thời Trang Erik Shoes là điểm đến lý tưởng cho những '
+          'tín đồ yêu thích giày dép, từ những mẫu giày thể thao năng động đến những'
+          ' đôi giày cao gót thanh lịch. Với không gian thiết kế hiện đại và thoải mái,'
+          ' cửa hàng tạo điều kiện cho khách hàng có thể dễ dàng chọn lựa và thử giày. ',
+      'PhoneNumber': '0934726073',
+      'Address': '650 Trần Cao Vân, Thanh Khê, Đà Nẵng',
+      'Email': 'ErikShoes@gmail.com',
+    });
+
+    // Chèn dữ liệu vào bảng Shop_Image
+    await db.insert('Shop_Image', {
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',
+      'Shop_ID': 1, // Giả sử Shop_ID là 1
+    });
+
+    // Chèn dữ liệu vào bảng Brand
+    await db.insert('Brand', {
+      'Name': 'Nike',
+      'Shop_ID': 1, // Giả sử Shop_ID là 1
+    });
+
+    await db.insert('Brand', {
+      'Name': 'Puma',
+      'Shop_ID': 1, // Giả sử Shop_ID là 1
+    });
+
+
+    // Chèn dữ liệu vào bảng Product
+    await db.insert('Product', {
+      'Name': 'Nike Air Force',
+      'Description': 'Mô tả về Product 1',
+      'Brand_ID': 1, // Giả sử Brand_ID là 1
+    });
+    await db.insert('Product', {
+      'Name': 'Nike Air Max',
+      'Description': 'Mô tả về Product 2',
+      'Brand_ID': 1, // Giả sử Brand_ID là 1
+    });
+    await db.insert('Product', {
+      'Name': 'Puma Air Force',
+      'Description': 'Mô tả về Product 3',
+      'Brand_ID': 2, // Giả sử Brand_ID là 2
+    });
+
+
+    // Chèn dữ liệu vào bảng Product_Image
+    await db.insert('Product_Image', {
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',
+      'Product_ID': 1, // Giả sử Product_ID là 1
+    });
+
+    await db.insert('Product_Image', {
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',
+      'Product_ID': 2, // Giả sử Product_ID là 1
+    });
+
+    await db.insert('Product_Image', {
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',
+      'Product_ID': 3, // Giả sử Product_ID là 1
+    });
+
+
+    // Chèn dữ liệu vào bảng Color
+    await db.insert('Color', {
+      'Name': 'Red',
+    });
+    await db.insert('Color', {
+      'Name': 'Yello',
+    });
+    await db.insert('Color', {
+      'Name': 'Blue',
+    });
+
+    // Chèn dữ liệu vào bảng Size
+    await db.insert('Size', {
+      'Size': 'M',
+    });
+
+    await db.insert('Size', {
+      'Size': 'L',
+    });
+
+    // Chèn dữ liệu vào bảng Product_Color
+    await db.insert('Product_Color', {
+      'Color_ID': 1, // Giả sử Color_ID là 1
+      'Product_ID': 1,
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+    });
+    await db.insert('Product_Color', {
+      'Color_ID': 2, // Giả sử Color_ID là 2
+      'Product_ID': 1,
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+    });
+
+
+    await db.insert('Product_Color', {
+      'Color_ID': 2, // Giả sử Color_ID là 2
+      'Product_ID': 2,
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+    });
+
+    await db.insert('Product_Color', {
+      'Color_ID': 3, // Giả sử Color_ID là 3
+      'Product_ID': 2,
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+    });
+
+    await db.insert('Product_Color', {
+      'Color_ID': 1, // Giả sử Color_ID là 1
+      'Product_ID': 3,
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+    });
+
+    await db.insert('Product_Color', {
+      'Color_ID': 3, // Giả sử Color_ID là 3
+      'Product_ID': 3,
+      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+    });
+
+    // Chèn dữ liệu vào bảng Product_Size
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 2, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Product_Color_ID': 2, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 3, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Product_Color_ID': 3, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 4, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Product_Color_ID': 4, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 5, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Product_Color_ID': 5, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 6, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 50,
+      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Product_Color_ID': 6, // Giả sử Product_Color_ID là 1
+    });
+
+
+
+
+    // Chèn dữ liệu vào bảng Account
+    await db.insert('Account', {
+      'Email': 'cus1@gm.com',
+      'Password': '123',
+      'CMND': '0935302822',
+      'Name': 'Hoàng Nguyên',
+      'Gender': 'M',
+      'DateOfBirth': '2003-06-30',
+      'PhoneNumber': '0935302822',
+      'AvatarURL': 'https://inkythuatso.com/uploads/thumbnails/800/2023/03/9-anh-dai-dien-trang-inkythuatso-03-15-27-03.jpg',
+      'Address': '70 Hà Huy Tập, Thanh Khê, Đà Nẵng',
+      'Role': 1,
+      'Status': 1,
+    });
+
+    // Chèn dữ liệu vào bảng Voucher
+    await db.insert('Voucher', {
+      'name': 'Voucher 1',
+      'token': 'TOKEN123',
+      'Discount_Money': 20,
+      'Amount': 100,
+      'StartDate': '2024-01-01',
+      'EndDate': '2024-12-31',
+      'Min_Price': 100,
+    });
+
+    // Chèn dữ liệu vào bảng Notification
+    await db.insert('Notification', {
+      'Title': 'Thông báo mới',
+      'Description': 'Chi tiết thông báo',
+      'CreateAt': DateTime.now().toString(),
+      'Shop_ID': 1, // Giả sử Shop_ID là 1
+    });
+
+    // Chèn dữ liệu vào bảng Reservation
+    await db.insert('Reservation', {
+      'Reservation_date': DateTime.now().toString(),
+      'Total_Price': 200,
+      'Payment_Method': 'Credit Card',
+      'Status': 'Pending',
+      'Account_ID': 1, // Giả sử Account_ID là 1
+    });
+
+    // Chèn dữ liệu vào bảng Reserved_Product_Size
+    await db.insert('Reserved_Product_Size', {
+      'Reservation_ID': 1, // Giả sử Reservation_ID là 1
+      'Product_Size_ID': 1, // Giả sử Product_Size_ID là 1
+    });
+
+    // Chèn dữ liệu vào bảng Voucher_Account
+    await db.insert('Voucher_Account', {
+      'Status': 1,
+      'Account_ID': 1, // Giả sử Account_ID là 1
+      'Voucher_ID': 1, // Giả sử Voucher_ID là 1
+    });
+
+
+    // Chèn dữ liệu vào bảng Favorite
+    await db.insert('Favorite', {
+      'Product_ID': 1, // Giả sử Product_ID là 1
+      'Account_ID': 1, // Giả sử Account_ID là 1
+    });
+
+    await db.insert('Favorite', {
+      'Product_ID': 2, // Giả sử Product_ID là 1
+      'Account_ID': 1, // Giả sử Account_ID là 1
+    });
+  }
 
 
 
