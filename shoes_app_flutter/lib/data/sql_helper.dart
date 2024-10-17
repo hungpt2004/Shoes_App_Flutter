@@ -458,14 +458,14 @@ class DBHelper {
   Future<void> _insertData(Database db) async {
     // Chèn dữ liệu vào bảng Shop
     await db.insert('Shop', {
-      'Name': 'Erik Shoes',
-      'Description': 'Giày Thời Trang Erik Shoes là điểm đến lý tưởng cho những '
-          'tín đồ yêu thích giày dép, từ những mẫu giày thể thao năng động đến những'
-          ' đôi giày cao gót thanh lịch. Với không gian thiết kế hiện đại và thoải mái,'
-          ' cửa hàng tạo điều kiện cho khách hàng có thể dễ dàng chọn lựa và thử giày. ',
-      'PhoneNumber': '0934726073',
-      'Address': '650 Trần Cao Vân, Thanh Khê, Đà Nẵng',
-      'Email': 'ErikShoes@gmail.com',
+    'Name': 'H&N Shoes',
+    'Description': 'H&N Shoes Fashion is the ideal destination for footwear enthusiasts, offering '
+        ' wide range of styles from dynamic sneakers to elegant high heels.'
+        'With a modern and comfortable store layout, it provides an inviting space'
+        ' where customers can easily browse and try on shoes.',
+    'PhoneNumber': '0934726073',
+    'Address': '650 Tran Cao Van Street, Thanh Khe, Da Nang City.',
+    'Email': 'HNShoes@gmail.com',
     });
 
     // Chèn dữ liệu vào bảng Shop_Image
@@ -485,48 +485,47 @@ class DBHelper {
       'Shop_ID': 1, // Giả sử Shop_ID là 1
     });
 
+    await db.insert('Brand', {
+      'Name': 'Adidas',
+      'Shop_ID': 1, // Giả sử Shop_ID là 1
+    });
+
+    await db.insert('Brand', {
+      'Name': 'Converse',
+      'Shop_ID': 1, // Giả sử Shop_ID là 1
+    });
+
+    await db.insert('Brand', {
+      'Name': 'Under',
+      'Shop_ID': 1, // Giả sử Shop_ID là 1
+    });
+
+
 
     // Chèn dữ liệu vào bảng Product
     await db.insert('Product', {
       'Name': 'Nike Air Force',
-      'Description': 'Mô tả về Product 1',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
       'Brand_ID': 1, // Giả sử Brand_ID là 1
     });
     await db.insert('Product', {
       'Name': 'Nike Air Max',
-      'Description': 'Mô tả về Product 2',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
       'Brand_ID': 1, // Giả sử Brand_ID là 1
     });
     await db.insert('Product', {
       'Name': 'Puma Air Force',
-      'Description': 'Mô tả về Product 3',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
       'Brand_ID': 2, // Giả sử Brand_ID là 2
-    });
-
-
-    // Chèn dữ liệu vào bảng Product_Image
-    await db.insert('Product_Image', {
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',
-      'Product_ID': 1, // Giả sử Product_ID là 1
-    });
-
-    await db.insert('Product_Image', {
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',
-      'Product_ID': 2, // Giả sử Product_ID là 1
-    });
-
-    await db.insert('Product_Image', {
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',
-      'Product_ID': 3, // Giả sử Product_ID là 1
     });
 
 
     // Chèn dữ liệu vào bảng Color
     await db.insert('Color', {
-      'Name': 'Red',
+      'Name': 'Black',
     });
     await db.insert('Color', {
-      'Name': 'Yello',
+      'Name': 'Red',
     });
     await db.insert('Color', {
       'Name': 'Blue',
@@ -545,37 +544,37 @@ class DBHelper {
     await db.insert('Product_Color', {
       'Color_ID': 1, // Giả sử Color_ID là 1
       'Product_ID': 1,
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+      'Url_Image': 'air1_black.png',// Giả sử Product_ID là 1
     });
     await db.insert('Product_Color', {
       'Color_ID': 2, // Giả sử Color_ID là 2
       'Product_ID': 1,
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+      'Url_Image': 'softride.jpg',// Giả sử Product_ID là 1
     });
 
 
     await db.insert('Product_Color', {
       'Color_ID': 2, // Giả sử Color_ID là 2
       'Product_ID': 2,
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+      'Url_Image': 'voltaic_red.jpg',// Giả sử Product_ID là 1
     });
 
     await db.insert('Product_Color', {
       'Color_ID': 3, // Giả sử Color_ID là 3
       'Product_ID': 2,
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+      'Url_Image': 'jordan1_blue.jpg',// Giả sử Product_ID là 1
     });
 
     await db.insert('Product_Color', {
       'Color_ID': 1, // Giả sử Color_ID là 1
       'Product_ID': 3,
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+      'Url_Image': 'mamba_black.jpg',// Giả sử Product_ID là 1
     });
 
     await db.insert('Product_Color', {
       'Color_ID': 3, // Giả sử Color_ID là 3
       'Product_ID': 3,
-      'Url_Image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiLPcMp0kKtvIMio1uLkk24WNd_zWcTTppcw&s',// Giả sử Product_ID là 1
+      'Url_Image': 'voltaic.jpg',// Giả sử Product_ID là 1
     });
 
     // Chèn dữ liệu vào bảng Product_Size
@@ -676,7 +675,7 @@ class DBHelper {
       'DateOfBirth': '2003-06-30',
       'PhoneNumber': '0935302822',
       'AvatarURL': 'https://inkythuatso.com/uploads/thumbnails/800/2023/03/9-anh-dai-dien-trang-inkythuatso-03-15-27-03.jpg',
-      'Address': '70 Hà Huy Tập, Thanh Khê, Đà Nẵng',
+      'Address': '70 Ha Huy Tap Street, Thanh Khe, Da Nang',
       'Role': 1,
       'Status': 1,
     });

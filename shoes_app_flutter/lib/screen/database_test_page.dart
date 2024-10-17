@@ -98,7 +98,9 @@ class _DatabaseTestPageState extends State<DatabaseTestPage> {
                 itemBuilder: (context, index) {
                   final shop = _shops[index];
                   return ListTile(
-                    title: Text(shop['Name']),
+                    title: Text(shop['Name'], style: TextStyle(
+                      fontFamily: "Montserrat",
+                    ),),
                     subtitle: Text(shop['Description']),
                     trailing: IconButton(
                       icon: Icon(Icons.delete),
