@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart' show Bloc;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_shoes_shop/data/database/sql_helper.dart';
+import 'package:flutter_shoes_shop/data/sql_helper.dart';
 import '../../../models/account.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
