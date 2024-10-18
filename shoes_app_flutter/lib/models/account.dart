@@ -27,6 +27,7 @@ class Account {
     required this.status,
   });
 
+  //Object to Map to save in database
   Map<String, dynamic> toMap() {
     return {
       'accountId': accountId,
@@ -44,6 +45,7 @@ class Account {
     };
   }
 
+  //Map to Object to get data from database
   factory Account.fromMap(Map<String, dynamic> map) {
     return Account(
       accountId: map['accountId'],

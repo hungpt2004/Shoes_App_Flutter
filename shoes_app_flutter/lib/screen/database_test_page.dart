@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shoes_shop/screen/started/components/start_screen.dart';
 
-import '../data/sql_helper.dart';
+import '../data/database/sql_helper.dart';
 
 class DatabaseTestPage extends StatefulWidget {
   @override
@@ -92,6 +93,13 @@ class _DatabaseTestPageState extends State<DatabaseTestPage> {
               child: Text('Add Shop'),
             ),
             SizedBox(height: 20),
+
+            ElevatedButton(onPressed: (){
+              setState(() {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => StartScreen()));
+              });
+            }, child: Text("GO")),
+
             Expanded(
               child: ListView.builder(
                 itemCount: _shops.length,
