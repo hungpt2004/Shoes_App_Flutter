@@ -208,253 +208,6 @@ class DBHelper {
 
 
 
-
-  // CRUD methods for Shop table
-  Future<int> createShop(Map<String, dynamic> shop) async {
-    final db = await instance.database;
-    return await db.insert('Shop', shop);
-  }
-
-  Future<List<Map<String, dynamic>>> getShops() async {
-    final db = await instance.database;
-    return await db.query('Shop');
-  }
-
-  Future<int> updateShop(Map<String, dynamic> shop) async {
-    final db = await instance.database;
-    final shopId = shop['Shop_ID'];
-    return await db.update('Shop', shop, where: 'Shop_ID = ?', whereArgs: [shopId]);
-  }
-
-  Future<int> deleteShop(int id) async {
-    final db = await instance.database;
-    return await db.delete('Shop', where: 'Shop_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Shop_Image table
-  Future<int> createShopImage(Map<String, dynamic> shopImage) async {
-    final db = await instance.database;
-    return await db.insert('Shop_Image', shopImage);
-  }
-
-  Future<List<Map<String, dynamic>>> getShopImages() async {
-    final db = await instance.database;
-    return await db.query('Shop_Image');
-  }
-
-  Future<int> updateShopImage(Map<String, dynamic> shopImage) async {
-    final db = await instance.database;
-    final shopImageId = shopImage['Shop_Image_ID'];
-    return await db.update('Shop_Image', shopImage, where: 'Shop_Image_ID = ?', whereArgs: [shopImageId]);
-  }
-
-  Future<int> deleteShopImage(int id) async {
-    final db = await instance.database;
-    return await db.delete('Shop_Image', where: 'Shop_Image_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Brand table
-  Future<int> createBrand(Map<String, dynamic> brand) async {
-    final db = await instance.database;
-    return await db.insert('Brand', brand);
-  }
-
-  Future<List<Map<String, dynamic>>> getBrands() async {
-    final db = await instance.database;
-    return await db.query('Brand');
-  }
-
-  Future<int> updateBrand(Map<String, dynamic> brand) async {
-    final db = await instance.database;
-    final brandId = brand['Brand_ID'];
-    return await db.update('Brand', brand, where: 'Brand_ID = ?', whereArgs: [brandId]);
-  }
-
-  Future<int> deleteBrand(int id) async {
-    final db = await instance.database;
-    return await db.delete('Brand', where: 'Brand_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Product table
-  Future<int> createProduct(Map<String, dynamic> product) async {
-    final db = await instance.database;
-    return await db.insert('Product', product);
-  }
-
-  Future<List<Map<String, dynamic>>> getProducts() async {
-    final db = await instance.database;
-    return await db.query('Product');
-  }
-
-  Future<int> updateProduct(Map<String, dynamic> product) async {
-    final db = await instance.database;
-    final productId = product['Product_ID'];
-    return await db.update('Product', product, where: 'Product_ID = ?', whereArgs: [productId]);
-  }
-
-  Future<int> deleteProduct(int id) async {
-    final db = await instance.database;
-    return await db.delete('Product', where: 'Product_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Color table
-  Future<int> createColor(Map<String, dynamic> color) async {
-    final db = await instance.database;
-    return await db.insert('Color', color);
-  }
-
-  Future<List<Map<String, dynamic>>> getColors() async {
-    final db = await instance.database;
-    return await db.query('Color');
-  }
-
-  Future<int> updateColor(Map<String, dynamic> color) async {
-    final db = await instance.database;
-    final colorId = color['Color_ID'];
-    return await db.update('Color', color, where: 'Color_ID = ?', whereArgs: [colorId]);
-  }
-
-  Future<int> deleteColor(int id) async {
-    final db = await instance.database;
-    return await db.delete('Color', where: 'Color_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Size table
-  Future<int> createSize(Map<String, dynamic> size) async {
-    final db = await instance.database;
-    return await db.insert('Size', size);
-  }
-
-  Future<List<Map<String, dynamic>>> getSizes() async {
-    final db = await instance.database;
-    return await db.query('Size');
-  }
-
-  Future<int> updateSize(Map<String, dynamic> size) async {
-    final db = await instance.database;
-    final sizeId = size['Size_ID'];
-    return await db.update('Size', size, where: 'Size_ID = ?', whereArgs: [sizeId]);
-  }
-
-  Future<int> deleteSize(int id) async {
-    final db = await instance.database;
-    return await db.delete('Size', where: 'Size_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Product_Color table
-  Future<int> createProductColor(Map<String, dynamic> productColor) async {
-    final db = await instance.database;
-    return await db.insert('Product_Color', productColor);
-  }
-
-  Future<List<Map<String, dynamic>>> getProductColors() async {
-    final db = await instance.database;
-    return await db.query('Product_Color');
-  }
-
-  Future<int> updateProductColor(Map<String, dynamic> productColor) async {
-    final db = await instance.database;
-    final productColorId = productColor['Product_Color_ID'];
-    return await db.update('Product_Color', productColor, where: 'Product_Color_ID = ?', whereArgs: [productColorId]);
-  }
-
-  Future<int> deleteProductColor(int id) async {
-    final db = await instance.database;
-    return await db.delete('Product_Color', where: 'Product_Color_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Product_Size table
-  Future<int> createProductSize(Map<String, dynamic> productSize) async {
-    final db = await instance.database;
-    return await db.insert('Product_Size', productSize);
-  }
-
-  Future<List<Map<String, dynamic>>> getProductSizes() async {
-    final db = await instance.database;
-    return await db.query('Product_Size');
-  }
-
-  Future<int> updateProductSize(Map<String, dynamic> productSize) async {
-    final db = await instance.database;
-    final productSizeId = productSize['Product_Size_ID'];
-    return await db.update('Product_Size', productSize, where: 'Product_Size_ID = ?', whereArgs: [productSizeId]);
-  }
-
-  Future<int> deleteProductSize(int id) async {
-    final db = await instance.database;
-    return await db.delete('Product_Size', where: 'Product_Size_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Account table
-  Future<int> createAccount(Map<String, dynamic> account) async {
-    final db = await instance.database;
-    return await db.insert('Account', account);
-  }
-
-  Future<List<Map<String, dynamic>>> getAccounts() async {
-    final db = await instance.database;
-    return await db.query('Account');
-  }
-
-  Future<int> updateAccount(Map<String, dynamic> account) async {
-    final db = await instance.database;
-    final accountId = account['Account_ID'];
-    return await db.update('Account', account, where: 'Account_ID = ?', whereArgs: [accountId]);
-  }
-
-  Future<int> deleteAccount(int id) async {
-    final db = await instance.database;
-    return await db.delete('Account', where: 'Account_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Voucher table
-  Future<int> createVoucher(Map<String, dynamic> voucher) async {
-    final db = await instance.database;
-    return await db.insert('Voucher', voucher);
-  }
-
-  Future<List<Map<String, dynamic>>> getVouchers() async {
-    final db = await instance.database;
-    return await db.query('Voucher');
-  }
-
-  Future<int> updateVoucher(Map<String, dynamic> voucher) async {
-    final db = await instance.database;
-    final voucherId = voucher['Voucher_ID'];
-    return await db.update('Voucher', voucher, where: 'Voucher_ID = ?', whereArgs: [voucherId]);
-  }
-
-  Future<int> deleteVoucher(int id) async {
-    final db = await instance.database;
-    return await db.delete('Voucher', where: 'Voucher_ID = ?', whereArgs: [id]);
-  }
-
-  // CRUD methods for Product Image table
-  Future<int> createProductImage(Map<String, dynamic> productImage) async {
-    final db = await instance.database;
-    return await db.insert('Product_Image', productImage);
-  }
-
-  Future<List<Map<String, dynamic>>> getProductImages() async {
-    final db = await instance.database;
-    return await db.query('Product_Image');
-  }
-
-  Future<int> updateProductImage(Map<String, dynamic> productImage) async {
-    final db = await instance.database;
-    final productImageId = productImage['Product_Image_ID'];
-    return await db.update('Product_Image', productImage,
-        where: 'Product_Image_ID = ?', whereArgs: [productImageId]);
-  }
-
-  Future<int> deleteProductImage(int id) async {
-    final db = await instance.database;
-    return await db.delete('Product_Image',
-        where: 'Product_Image_ID = ?', whereArgs: [id]);
-  }
-
-
-
   Future<void> _insertData(Database db) async {
     // Chèn dữ liệu vào bảng Shop
     await db.insert('Shop', {
@@ -736,6 +489,258 @@ class DBHelper {
 
 
 
+
+
+
+  // CRUD methods for Shop table
+  Future<int> createShop(Map<String, dynamic> shop) async {
+    final db = await instance.database;
+    return await db.insert('Shop', shop);
+  }
+
+  Future<List<Map<String, dynamic>>> getShops() async {
+    final db = await instance.database;
+    return await db.query('Shop');
+  }
+
+  Future<int> updateShop(Map<String, dynamic> shop) async {
+    final db = await instance.database;
+    final shopId = shop['Shop_ID'];
+    return await db.update('Shop', shop, where: 'Shop_ID = ?', whereArgs: [shopId]);
+  }
+
+  Future<int> deleteShop(int id) async {
+    final db = await instance.database;
+    return await db.delete('Shop', where: 'Shop_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Shop_Image table
+  Future<int> createShopImage(Map<String, dynamic> shopImage) async {
+    final db = await instance.database;
+    return await db.insert('Shop_Image', shopImage);
+  }
+
+  Future<List<Map<String, dynamic>>> getShopImages() async {
+    final db = await instance.database;
+    return await db.query('Shop_Image');
+  }
+
+  Future<int> updateShopImage(Map<String, dynamic> shopImage) async {
+    final db = await instance.database;
+    final shopImageId = shopImage['Shop_Image_ID'];
+    return await db.update('Shop_Image', shopImage, where: 'Shop_Image_ID = ?', whereArgs: [shopImageId]);
+  }
+
+  Future<int> deleteShopImage(int id) async {
+    final db = await instance.database;
+    return await db.delete('Shop_Image', where: 'Shop_Image_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Brand table
+  Future<int> createBrand(Map<String, dynamic> brand) async {
+    final db = await instance.database;
+    return await db.insert('Brand', brand);
+  }
+
+  Future<List<Map<String, dynamic>>> getBrands() async {
+    final db = await instance.database;
+    return await db.query('Brand');
+  }
+
+  Future<int> updateBrand(Map<String, dynamic> brand) async {
+    final db = await instance.database;
+    final brandId = brand['Brand_ID'];
+    return await db.update('Brand', brand, where: 'Brand_ID = ?', whereArgs: [brandId]);
+  }
+
+  Future<int> deleteBrand(int id) async {
+    final db = await instance.database;
+    return await db.delete('Brand', where: 'Brand_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Product table
+  Future<int> createProduct(Map<String, dynamic> product) async {
+    final db = await instance.database;
+    return await db.insert('Product', product);
+  }
+
+  Future<List<Map<String, dynamic>>> getProducts() async {
+    final db = await instance.database;
+    return await db.query('Product');
+  }
+
+  Future<int> updateProduct(Map<String, dynamic> product) async {
+    final db = await instance.database;
+    final productId = product['Product_ID'];
+    return await db.update('Product', product, where: 'Product_ID = ?', whereArgs: [productId]);
+  }
+
+  Future<int> deleteProduct(int id) async {
+    final db = await instance.database;
+    return await db.delete('Product', where: 'Product_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Color table
+  Future<int> createColor(Map<String, dynamic> color) async {
+    final db = await instance.database;
+    return await db.insert('Color', color);
+  }
+
+  Future<List<Map<String, dynamic>>> getColors() async {
+    final db = await instance.database;
+    return await db.query('Color');
+  }
+
+  Future<int> updateColor(Map<String, dynamic> color) async {
+    final db = await instance.database;
+    final colorId = color['Color_ID'];
+    return await db.update('Color', color, where: 'Color_ID = ?', whereArgs: [colorId]);
+  }
+
+  Future<int> deleteColor(int id) async {
+    final db = await instance.database;
+    return await db.delete('Color', where: 'Color_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Size table
+  Future<int> createSize(Map<String, dynamic> size) async {
+    final db = await instance.database;
+    return await db.insert('Size', size);
+  }
+
+  Future<List<Map<String, dynamic>>> getSizes() async {
+    final db = await instance.database;
+    return await db.query('Size');
+  }
+
+  Future<int> updateSize(Map<String, dynamic> size) async {
+    final db = await instance.database;
+    final sizeId = size['Size_ID'];
+    return await db.update('Size', size, where: 'Size_ID = ?', whereArgs: [sizeId]);
+  }
+
+  Future<int> deleteSize(int id) async {
+    final db = await instance.database;
+    return await db.delete('Size', where: 'Size_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Product_Color table
+  Future<int> createProductColor(Map<String, dynamic> productColor) async {
+    final db = await instance.database;
+    return await db.insert('Product_Color', productColor);
+  }
+
+  Future<List<Map<String, dynamic>>> getProductColors() async {
+    final db = await instance.database;
+    return await db.query('Product_Color');
+  }
+
+  Future<int> updateProductColor(Map<String, dynamic> productColor) async {
+    final db = await instance.database;
+    final productColorId = productColor['Product_Color_ID'];
+    return await db.update('Product_Color', productColor, where: 'Product_Color_ID = ?', whereArgs: [productColorId]);
+  }
+
+  Future<int> deleteProductColor(int id) async {
+    final db = await instance.database;
+    return await db.delete('Product_Color', where: 'Product_Color_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Product_Size table
+  Future<int> createProductSize(Map<String, dynamic> productSize) async {
+    final db = await instance.database;
+    return await db.insert('Product_Size', productSize);
+  }
+
+  Future<List<Map<String, dynamic>>> getProductSizes() async {
+    final db = await instance.database;
+    return await db.query('Product_Size');
+  }
+
+  Future<int> updateProductSize(Map<String, dynamic> productSize) async {
+    final db = await instance.database;
+    final productSizeId = productSize['Product_Size_ID'];
+    return await db.update('Product_Size', productSize, where: 'Product_Size_ID = ?', whereArgs: [productSizeId]);
+  }
+
+  Future<int> deleteProductSize(int id) async {
+    final db = await instance.database;
+    return await db.delete('Product_Size', where: 'Product_Size_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Account table
+  static Future<int> createAccount(Map<String, dynamic> account) async {
+    final db = await instance.database;
+    return await db.insert('Account', account);
+  }
+
+  Future<List<Map<String, dynamic>>> getAccounts() async {
+    final db = await instance.database;
+    return await db.query('Account');
+  }
+
+  Future<int> updateAccount(Map<String, dynamic> account) async {
+    final db = await instance.database;
+    final accountId = account['Account_ID'];
+    return await db.update('Account', account, where: 'Account_ID = ?', whereArgs: [accountId]);
+  }
+
+  Future<int> deleteAccount(int id) async {
+    final db = await instance.database;
+    return await db.delete('Account', where: 'Account_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Voucher table
+  Future<int> createVoucher(Map<String, dynamic> voucher) async {
+    final db = await instance.database;
+    return await db.insert('Voucher', voucher);
+  }
+
+  Future<List<Map<String, dynamic>>> getVouchers() async {
+    final db = await instance.database;
+    return await db.query('Voucher');
+  }
+
+  Future<int> updateVoucher(Map<String, dynamic> voucher) async {
+    final db = await instance.database;
+    final voucherId = voucher['Voucher_ID'];
+    return await db.update('Voucher', voucher, where: 'Voucher_ID = ?', whereArgs: [voucherId]);
+  }
+
+  Future<int> deleteVoucher(int id) async {
+    final db = await instance.database;
+    return await db.delete('Voucher', where: 'Voucher_ID = ?', whereArgs: [id]);
+  }
+
+  // CRUD methods for Product Image table
+  Future<int> createProductImage(Map<String, dynamic> productImage) async {
+    final db = await instance.database;
+    return await db.insert('Product_Image', productImage);
+  }
+
+  Future<List<Map<String, dynamic>>> getProductImages() async {
+    final db = await instance.database;
+    return await db.query('Product_Image');
+  }
+
+  Future<int> updateProductImage(Map<String, dynamic> productImage) async {
+    final db = await instance.database;
+    final productImageId = productImage['Product_Image_ID'];
+    return await db.update('Product_Image', productImage,
+        where: 'Product_Image_ID = ?', whereArgs: [productImageId]);
+  }
+
+  Future<int> deleteProductImage(int id) async {
+    final db = await instance.database;
+    return await db.delete('Product_Image',
+        where: 'Product_Image_ID = ?', whereArgs: [id]);
+  }
+
+
+  Future<List<Map<String, dynamic>>> getAccountByMail(String email) async {
+    final db = await instance.database;
+    return await db.query('Account', where: 'Email = ?', whereArgs: [email]);
+  }
 
   Future close() async {
     final db = await instance.database;
