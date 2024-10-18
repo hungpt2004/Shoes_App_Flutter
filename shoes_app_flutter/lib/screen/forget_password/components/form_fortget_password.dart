@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shoes_shop/screen/register/widgets/move_signin.dart';
-import 'package:flutter_shoes_shop/screen/register/widgets/signin_google.dart';
-import 'package:flutter_shoes_shop/screen/register/widgets/signin_input.dart';
-import 'package:flutter_shoes_shop/theme/scaffold_messenger.dart';
+
 import 'package:flutter_shoes_shop/theme/style_color.dart';
 import 'package:flutter_shoes_shop/theme/style_text.dart';
 
-import '../../../data/sql_helper.dart';
-import '../../../models/account.dart';
 
 class FormFortgetPassword extends StatefulWidget {
   const FormFortgetPassword({super.key});
@@ -18,9 +13,7 @@ class FormFortgetPassword extends StatefulWidget {
 
 class _FormFortgetPasswordState extends State<FormFortgetPassword> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   bool hiddenPassword = true;
   @override
   Widget build(BuildContext context) {
@@ -133,7 +126,7 @@ class _FormFortgetPasswordState extends State<FormFortgetPassword> {
                             style: TextButton.styleFrom(
                               backgroundColor: StyleColor.lightBlueColor,
                             ),
-                            onPressed: (){},
+                            onPressed: onTapForgetPasswordInput,
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 15),
                               child: Text(
@@ -154,28 +147,9 @@ class _FormFortgetPasswordState extends State<FormFortgetPassword> {
     );
   }
 
-  void onTapSigninInput() async {
+  void onTapForgetPasswordInput() async {
     if (_formKey.currentState!.validate()) {
-      try {
-        Account account = Account.signin(
-            name: nameController.text,
-            email: emailController.text,
-            password: passwordController.text);
-        // Lưu tài khoản vào cơ sở dữ liệu
-        int id = await DBHelper.createAccount(account.toMap());
-        ShowScaffoldMessenger.showScaffoldMessengerSuccessfully(
-            context, "Create account successfully!");
-        if (id > 0) {
-          print('Account created successfully with ID: $id');
-          nameController.clear();
-          emailController.clear();
-          passwordController.clear();
-        } else {
-          print('Failed to create account');
-        }
-      } catch (e) {
-        print('Error creating account: $e');
-      }
+
     } else {
       print('Form is not valid');
     }
