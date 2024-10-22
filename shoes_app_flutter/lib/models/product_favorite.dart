@@ -20,4 +20,5 @@ class Favorite {
       productId: map['productId'],
     );
   }
+
 }

@@ -6,4 +6,5 @@ class StyleColor{
   static const Color backgroundColor = Color(0xFFF8F9FA);
   static const Color darkBlueColor = Color(0xFF1A2530);
   static const Color blueGreyColor = Color(0xFF707B81);
+  static const Color redLightColor = Color(0xFFF87265);
 }

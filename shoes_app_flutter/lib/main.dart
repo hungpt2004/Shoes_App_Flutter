@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shoes_shop/data/bloc/auth_bloc/auth_bloc.dart';
-import 'package:flutter_shoes_shop/screen/login/components/login_screen.dart';
-import 'package:flutter_shoes_shop/screen/started/components/start_screen.dart';
-import 'package:flutter_shoes_shop/screen/started/components/start_screen.dart';
+import 'package:flutter_shoes_shop/screen/home/components/home_screen.dart';
+import 'package:flutter_shoes_shop/screen/home/components/widgets/navbar_widget.dart';
+import 'package:flutter_shoes_shop/screen/login/components/form_login.dart';
 
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: StartScreen(),
+          home: BottomNavbar(),
         ));
   }
 }
