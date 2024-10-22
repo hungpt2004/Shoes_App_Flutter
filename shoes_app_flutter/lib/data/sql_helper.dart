@@ -1,4 +1,4 @@
-  import 'package:path/path.dart';
+import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../models/product.dart';
@@ -14,7 +14,7 @@ class DBHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('shop_database2.db');
+    _database = await _initDB('shop_database12.db');
     return _database!;
   }
 
@@ -212,7 +212,6 @@ class DBHelper {
 
 
 
-
   Future<void> _insertData(Database db) async {
     // Chèn dữ liệu vào bảng Shop
     await db.insert('Shop', {
@@ -260,6 +259,7 @@ class DBHelper {
 
 
 
+
     // Chèn dữ liệu vào bảng Product
     await db.insert('Product', {
       'Name': 'Nike Air Force',
@@ -275,6 +275,27 @@ class DBHelper {
       'Name': 'Puma Air Force',
       'Description': 'There Are Many Beautiful And Attractive Plants To Your Room.',
       'Brand_ID': 2, // Giả sử Brand_ID là 2
+    });
+    //NEW
+    await db.insert('Product', {
+      'Name': 'Nike Dunk Low',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
+      'Brand_ID': 1, // Giả sử Brand_ID là 1
+    });
+    await db.insert('Product', {
+      'Name': 'Adidas Mamba',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
+      'Brand_ID': 3, // Giả sử Brand_ID là 1
+    });
+    await db.insert('Product', {
+      'Name': 'Converse v2.0',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
+      'Brand_ID': 4, // Giả sử Brand_ID là 2
+    });
+    await db.insert('Product', {
+      'Name': 'Curry v1.8',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
+      'Brand_ID': 5, // Giả sử Brand_ID là 2
     });
 
 
@@ -324,43 +345,96 @@ class DBHelper {
 
 
     // Chèn dữ liệu vào bảng Product_Color
+
+
     await db.insert('Product_Color', {
       'Color_ID': 1, // Giả sử Color_ID là 1
       'Product_ID': 1,
-      'Url_Image': 'air1_black.png',// Giả sử Product_ID là 1
+      'Url_Image': 'under/type2_orange.jpg',// Giả sử Product_ID là 1
     });
+
     await db.insert('Product_Color', {
       'Color_ID': 2, // Giả sử Color_ID là 2
       'Product_ID': 1,
-      'Url_Image': 'softride.jpg',// Giả sử Product_ID là 1
+      'Url_Image': 'under/type2_orange.jpg',// Giả sử Product_ID là 1
     });
-
 
     await db.insert('Product_Color', {
       'Color_ID': 2, // Giả sử Color_ID là 2
       'Product_ID': 2,
-      'Url_Image': 'voltaic_red.jpg',// Giả sử Product_ID là 1
+      'Url_Image': 'puma/voltaic_red.jpg',// Giả sử Product_ID là 1
     });
 
     await db.insert('Product_Color', {
       'Color_ID': 3, // Giả sử Color_ID là 3
       'Product_ID': 2,
-      'Url_Image': 'jordan1_blue.jpg',// Giả sử Product_ID là 1
+      'Url_Image': 'puma/softride.jpg',// Giả sử Product_ID là 1
     });
 
     await db.insert('Product_Color', {
       'Color_ID': 1, // Giả sử Color_ID là 1
       'Product_ID': 3,
-      'Url_Image': 'mamba_black.jpg',// Giả sử Product_ID là 1
+      'Url_Image': 'puma/mamba.jpg',// Giả sử Product_ID là 1
     });
 
     await db.insert('Product_Color', {
       'Color_ID': 3, // Giả sử Color_ID là 3
       'Product_ID': 3,
-      'Url_Image': 'voltaic.jpg',// Giả sử Product_ID là 1
+      'Url_Image': 'puma/voltaic.jpg',// Giả sử Product_ID là 1
+    });
+
+    await db.insert('Product_Color', {
+      'Color_ID': 3, // Giả sử Color_ID là 3
+      'Product_ID': 4,
+      'Url_Image': 'under/type3_red.jpg',// Giả sử Product_ID là 1
+    });
+
+    await db.insert('Product_Color', {
+      'Color_ID': 2, // Giả sử Color_ID là 2
+      'Product_ID': 5, // Adidas Mamba
+      'Url_Image': 'adidas/original_white.jpg', // Đường dẫn hình ảnh cho Adidas Mamba
+    });
+
+    await db.insert('Product_Color', {
+      'Color_ID': 1, // Giả sử Color_ID là 1
+      'Product_ID': 6, // Converse v2.0
+      'Url_Image': 'under/type4_green.jpg', // Đường dẫn hình ảnh cho Converse v2.0
+    });
+
+    await db.insert('Product_Color', {
+      'Color_ID': 2, // Giả sử Color_ID là 2
+      'Product_ID': 7, // Curry v1.8
+      'Url_Image': 'under/type4_grey.jpg', // Đường dẫn hình ảnh cho Curry v1.8
     });
 
     // Chèn dữ liệu vào bảng Product_Size
+    await db.insert('Product_Size', {
+      'Price': 300,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 10, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 159,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 7, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 180,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 8, // Giả sử Product_Color_ID là 1
+    });
+    await db.insert('Product_Size', {
+      'Price': 200,
+      'Amount': 50,
+      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Product_Color_ID': 9, // Giả sử Product_Color_ID là 1
+    });
+
     await db.insert('Product_Size', {
       'Price': 100,
       'Amount': 0,
@@ -490,8 +564,6 @@ class DBHelper {
     });
 
 
-
-
     // Chèn dữ liệu vào bảng Account
     await db.insert('Account', {
       'Email': 'cus1@gm.com',
@@ -564,8 +636,6 @@ class DBHelper {
 
 
 
-
-
   // CRUD methods for Shop table
   Future<int> createShop(Map<String, dynamic> shop) async {
     final db = await instance.database;
@@ -602,7 +672,7 @@ class DBHelper {
   Future<int> updateShopImage(Map<String, dynamic> shopImage) async {
     final db = await instance.database;
     final shopImageId = shopImage['Shop_Image_ID'];
-    return await db.update('Shop_Image', shopImage, where: 'Shop_Image_ID = ?', whereArgs: [shopImageId]);
+    return await db.update('Shop_Image',shopImage,where:'Shop_Image_ID = ?',whereArgs: [shopImageId]);
   }
 
   Future<int> deleteShopImage(int id) async {
@@ -642,6 +712,30 @@ class DBHelper {
     final db = await instance.database;
     return await db.query('Product');
   }
+
+  Future<List<Map<String, dynamic>>> getProductDetails() async {
+    final db = await database; // Đảm bảo bạn đã khởi tạo SQLite database
+    return await db.rawQuery('''
+    SELECT 
+        Product.Product_ID,
+        Product.Name AS Product_Name,
+        Product.Description,
+        Product_Color.Url_Image AS Product_Image,
+        Color.Name AS Color_Name,
+        Size.Size AS Size_Name,
+        Product_Size.Price,
+        Product_Size.Amount
+    FROM 
+        Product
+    LEFT JOIN Product_Image ON Product.Product_ID = Product_Image.Product_ID
+    LEFT JOIN Product_Color ON Product.Product_ID = Product_Color.Product_ID
+    LEFT JOIN Color ON Product_Color.Color_ID = Color.Color_ID
+    LEFT JOIN Product_Size ON Product_Color.Product_Color_ID = Product_Size.Product_Color_ID
+    LEFT JOIN Size ON Product_Size.Size_ID = Size.Size_ID;
+  ''');
+  }
+
+
 
   Future<int> updateProduct(Map<String, dynamic> product) async {
     final db = await instance.database;

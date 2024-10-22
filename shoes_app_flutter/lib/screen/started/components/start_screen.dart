@@ -83,7 +83,7 @@ class _StartScreenState extends State<StartScreen> {
                   autoPlay: true,
                   aspectRatio: 16 / 9,
                   viewportFraction:
-                      0.5, // Điều chỉnh này có thể thay đổi để phù hợp với thiết kế của bạn
+                  0.5, // Điều chỉnh này có thể thay đổi để phù hợp với thiết kế của bạn
                   enlargeCenterPage: true, // Tắt phóng to trang ở giữa
                 )),
             //DOT
@@ -116,27 +116,27 @@ class _StartScreenState extends State<StartScreen> {
                 onPressed: isLoad ? null : _startLoad,
                 child: isLoad
                     ? SizedBox(
-                        width: double.infinity,
-                        height: 20,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: LoadingAnimationWidget.inkDrop(
-                                  color: Colors.black, size: 25),
-                            ),
-                            const Text(
-                              "Please wait...",
-                              style: TextStyle(fontSize: 14),
-                            )
-                          ],
-                        ))
+                    width: double.infinity,
+                    height: 20,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: LoadingAnimationWidget.inkDrop(
+                              color: Colors.black, size: 25),
+                        ),
+                        const Text(
+                          "Please wait...",
+                          style: TextStyle(fontSize: 14),
+                        )
+                      ],
+                    ))
                     : const Text(
-                        "Get Started",
-                        style: TextStyle(color: Colors.black,fontSize: 16),
-                      ))
+                  "Get Started",
+                  style: TextStyle(color: Colors.black,fontSize: 16),
+                ))
 
 
           ],

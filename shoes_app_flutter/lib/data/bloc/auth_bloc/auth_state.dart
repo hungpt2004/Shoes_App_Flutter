@@ -4,7 +4,11 @@ abstract class AuthState {}
 class LoginInitial extends AuthState {}
 
 //After toggle login
-class LoginLoading extends AuthState {}
+class LoginLoading extends AuthState {
+  bool isLoading;
+
+  LoginLoading({required this.isLoading});
+}
 
 class LoginSuccess extends AuthState {
   final Map<String, dynamic> user;

@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shoes_shop/data/bloc/auth_bloc/auth_state.dart';
 import 'package:flutter_shoes_shop/screen/forget_password/components/form_fortget_password.dart';
+import 'package:flutter_shoes_shop/screen/home/components/home_screen.dart';
+import 'package:flutter_shoes_shop/screen/home/components/widgets/navbar_widget.dart';
 import 'package:flutter_shoes_shop/screen/register/components/form_register.dart';
 import 'package:flutter_shoes_shop/theme/scaffold_messenger.dart';
 import 'package:flutter_shoes_shop/utils/slide_page_route_widget.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../data/bloc/auth_bloc/auth_bloc.dart';
 import '../../../theme/style_color.dart';
+import '../../../theme/style_space.dart';
 import '../../../theme/style_text.dart';
 import '../../register/widgets/signin_google.dart';
 
@@ -58,12 +61,12 @@ class _FormLoginState extends State<FormLogin> {
               key: _formKey,
               child: ListView(
                 children: [
-                  _space(10, 0),
+                  StyleSpace.space(10, 0),
                   _backButton(context),
-                  _space(30, 0),
+                  StyleSpace.space(30, 0),
                   _textTitle(),
                   _textSubTitle(),
-                  _space(50, 0),
+                  StyleSpace.space(50, 0),
                   //FORM USERNAME
                   _textLabel("Email Address"),
                   Padding(
@@ -96,7 +99,7 @@ class _FormLoginState extends State<FormLogin> {
                       ),
                     ),
                   ),
-                  _space(20, 0),
+                  StyleSpace.space(20, 0),
                   //FORM PASSWORD
                   _textLabel("Password"),
                   Padding(
@@ -180,12 +183,12 @@ class _FormLoginState extends State<FormLogin> {
                             ),
                     ),
                   ),
-                  _space(30, 0),
+                  StyleSpace.space(30, 0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SigninGoogle(onTap: () {}),
                   ),
-                  _space(80, 0),
+                  StyleSpace.space(80, 0),
                   _signUpQuestion(context)
                 ],
               ),
@@ -206,14 +209,10 @@ class _FormLoginState extends State<FormLogin> {
       isLoadButton = false;
     });
     AuthBloc.login(context, _usernameController.text, _passwordController.text);
+    Future.delayed(const Duration(seconds: 2),(){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const BottomNavbar()));
+    });
   }
-}
-
-Widget _space(double? height, double? width) {
-  return SizedBox(
-    height: height,
-    width: width,
-  );
 }
 
 Widget _textLabel(String text) {
@@ -239,7 +238,7 @@ Widget _signUpQuestion(BuildContext context) {
       GestureDetector(
         onTap: () {
           Navigator.push(context,
-              createSlideTransitions(newPage: FormRegister(), x: 1.0, y: 0.0));
+              createSlideTransitions(newPage: const FormRegister(), x: 1.0, y: 0.0));
         },
         child: Text(
           " Sign Up For Free",
@@ -311,7 +310,7 @@ Widget _forgotPassword(BuildContext context) {
       children: [
         TextButton(
             onPressed: () {
-              Navigator.push(context, createSlideTransitions(newPage: FormFortgetPassword(), x: 1.0, y: 0.0));
+              Navigator.push(context, createSlideTransitions(newPage: const FormFortgetPassword(), x: 1.0, y: 0.0));
             },
             child: Text(
               "Recovery password",

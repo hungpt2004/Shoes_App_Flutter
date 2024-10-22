@@ -28,6 +28,7 @@ class Account {
     required this.status,
   });
 
+  //Object to Map to save in database
   // Constructor cho việc đăng nhập
   Account.signin({
     required this.email,
@@ -60,6 +61,7 @@ class Account {
     };
   }
 
+  //Map to Object to get data from database
   // Phương thức tạo đối tượng từ Map
   factory Account.fromMap(Map<String, dynamic> map) {
     return Account(
