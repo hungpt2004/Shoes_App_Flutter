@@ -1,6 +1,11 @@
   import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../models/product.dart';
+import '../models/product_color.dart';
+import '../models/product_size.dart';
+import '../models/size.dart';
+
 class DBHelper {
   static final DBHelper instance = DBHelper._init();
   static Database? _database;
@@ -211,14 +216,14 @@ class DBHelper {
   Future<void> _insertData(Database db) async {
     // Chèn dữ liệu vào bảng Shop
     await db.insert('Shop', {
-    'Name': 'H&N Shoes',
-    'Description': 'H&N Shoes Fashion is the ideal destination for footwear enthusiasts, offering '
-        ' wide range of styles from dynamic sneakers to elegant high heels.'
-        'With a modern and comfortable store layout, it provides an inviting space'
-        ' where customers can easily browse and try on shoes.',
-    'PhoneNumber': '0934726073',
-    'Address': '650 Tran Cao Van Street, Thanh Khe, Da Nang City.',
-    'Email': 'HNShoes@gmail.com',
+      'Name': 'H&N Shoes',
+      'Description': 'H&N Shoes Fashion is the ideal destination for footwear enthusiasts, offering '
+          ' wide range of styles from dynamic sneakers to elegant high heels.'
+          'With a modern and comfortable store layout, it provides an inviting space'
+          ' where customers can easily browse and try on shoes.',
+      'PhoneNumber': '0934726073',
+      'Address': '650 Tran Cao Van Street, Thanh Khe, Da Nang City.',
+      'Email': 'HNShoes@gmail.com',
     });
 
     // Chèn dữ liệu vào bảng Shop_Image
@@ -258,17 +263,17 @@ class DBHelper {
     // Chèn dữ liệu vào bảng Product
     await db.insert('Product', {
       'Name': 'Nike Air Force',
-      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room.',
       'Brand_ID': 1, // Giả sử Brand_ID là 1
     });
     await db.insert('Product', {
       'Name': 'Nike Air Max',
-      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room.',
       'Brand_ID': 1, // Giả sử Brand_ID là 1
     });
     await db.insert('Product', {
       'Name': 'Puma Air Force',
-      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room',
+      'Description': 'There Are Many Beautiful And Attractive Plants To Your Room.',
       'Brand_ID': 2, // Giả sử Brand_ID là 2
     });
 
@@ -286,12 +291,37 @@ class DBHelper {
 
     // Chèn dữ liệu vào bảng Size
     await db.insert('Size', {
-      'Size': 'M',
+      'Size': '36',
     });
 
     await db.insert('Size', {
-      'Size': 'L',
+      'Size': '37',
     });
+
+    await db.insert('Size', {
+      'Size': '38',
+    });
+
+    await db.insert('Size', {
+      'Size': '39',
+    });
+
+    await db.insert('Size', {
+      'Size': '40',
+    });
+
+    await db.insert('Size', {
+      'Size': '41',
+    });
+
+    await db.insert('Size', {
+      'Size': '42',
+    });
+
+    await db.insert('Size', {
+      'Size': '43',
+    });
+
 
     // Chèn dữ liệu vào bảng Product_Color
     await db.insert('Product_Color', {
@@ -333,85 +363,129 @@ class DBHelper {
     // Chèn dữ liệu vào bảng Product_Size
     await db.insert('Product_Size', {
       'Price': 100,
-      'Amount': 50,
+      'Amount': 0,
       'Size_ID': 1, // Giả sử Size_ID là 1
       'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
+      'Price': 200,
+      'Amount': 20,
       'Size_ID': 2, // Giả sử Size_ID là 1
       'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
       'Price': 100,
-      'Amount': 50,
-      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Amount': 15,
+      'Size_ID': 3, // Giả sử Size_ID là 1
+      'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 200,
+      'Amount': 0,
+      'Size_ID': 4, // Giả sử Size_ID là 1
+      'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 200,
+      'Amount': 10,
+      'Size_ID': 5, // Giả sử Size_ID là 1
+      'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 15,
+      'Size_ID': 6, // Giả sử Size_ID là 1
+      'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 100,
+      'Amount': 15,
+      'Size_ID': 7, // Giả sử Size_ID là 1
+      'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
+    });
+
+    await db.insert('Product_Size', {
+      'Price': 200,
+      'Amount': 0,
+      'Size_ID': 8, // Giả sử Size_ID là 1
+      'Product_Color_ID': 1, // Giả sử Product_Color_ID là 1
+    });
+
+
+
+    await db.insert('Product_Size', {
+      'Price': 300,
+      'Amount': 25,
+      'Size_ID': 3, // Giả sử Size_ID là 1
       'Product_Color_ID': 2, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
-      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Price': 400,
+      'Amount': 30,
+      'Size_ID': 4, // Giả sử Size_ID là 1
       'Product_Color_ID': 2, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
-      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Price': 500,
+      'Amount': 35,
+      'Size_ID': 5, // Giả sử Size_ID là 1
       'Product_Color_ID': 3, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
-      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Price': 600,
+      'Amount': 40,
+      'Size_ID': 6, // Giả sử Size_ID là 1
       'Product_Color_ID': 3, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
-      'Size_ID': 1, // Giả sử Size_ID là 1
+      'Price': 700,
+      'Amount': 45,
+      'Size_ID': 7, // Giả sử Size_ID là 1
       'Product_Color_ID': 4, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
+      'Price': 800,
       'Amount': 50,
-      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Size_ID': 8, // Giả sử Size_ID là 1
       'Product_Color_ID': 4, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
+      'Price': 900,
+      'Amount': 55,
       'Size_ID': 1, // Giả sử Size_ID là 1
       'Product_Color_ID': 5, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
-      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Price': 1000,
+      'Amount': 60,
+      'Size_ID': 4, // Giả sử Size_ID là 1
       'Product_Color_ID': 5, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
+      'Price': 1100,
+      'Amount': 65,
       'Size_ID': 1, // Giả sử Size_ID là 1
       'Product_Color_ID': 6, // Giả sử Product_Color_ID là 1
     });
 
     await db.insert('Product_Size', {
-      'Price': 100,
-      'Amount': 50,
-      'Size_ID': 2, // Giả sử Size_ID là 1
+      'Price': 1200,
+      'Amount': 70,
+      'Size_ID': 5, // Giả sử Size_ID là 1
       'Product_Color_ID': 6, // Giả sử Product_Color_ID là 1
     });
 
@@ -746,4 +820,101 @@ class DBHelper {
     final db = await instance.database;
     db.close();
   }
+
+
+
+  //get Product by id
+  static Future<Product?> getProductById(int productId) async {
+    final db = await instance.database;
+
+    // Query for the product by ID
+    final List<Map<String, dynamic>> result = await db.query(
+      'Product',
+      where: 'Product_ID = ?',
+      whereArgs: [productId],
+    );
+
+    if (result.isNotEmpty) {
+      return Product.fromMap(result.first); // Convert the map to a Product object
+    }
+
+    return null; // Return null if no product found
+  }
+
+  // Lấy danh sách ProductColor theo Product_ID
+  static Future<List<ProductColor>> getProductColorsByProductId(int productId) async {
+    final db = await instance.database;
+
+    // Truy vấn bảng Product_Color theo Product_ID
+    final List<Map<String, dynamic>> result = await db.query(
+      'Product_Color',
+      where: 'Product_ID = ?',
+      whereArgs: [productId],
+    );
+
+    // Nếu kết quả không rỗng, chuyển đổi từng phần tử trong result thành đối tượng ProductColor
+    if (result.isNotEmpty) {
+      return result.map((map) => ProductColor.fromMap(map)).toList();
+    }
+
+    // Trả về danh sách rỗng nếu không tìm thấy dữ liệu
+    return [];
+  }
+
+  // Lấy danh sách ProductSize theo Product_Color_ID
+  static Future<List<ProductSize>> getProductSizesByColorId(int productColorId) async {
+    final db = await instance.database;
+
+    // Truy vấn bảng Product_Size theo Product_Color_ID
+    final List<Map<String, dynamic>> result = await db.query(
+      'Product_Size',
+      where: 'Product_Color_ID = ?',
+      whereArgs: [productColorId],
+    );
+
+    // Nếu kết quả không rỗng, chuyển đổi từng phần tử trong result thành đối tượng ProductSize
+    if (result.isNotEmpty) {
+      return result.map((map) => ProductSize.fromMap(map)).toList();
+    }
+
+    // Trả về danh sách rỗng nếu không tìm thấy dữ liệu
+    return [];
+  }
+
+  static Future<Size?> getSizeById(int sizeId) async {
+    final db = await instance.database;
+
+    // Truy vấn bảng Size theo Size_ID
+    final List<Map<String, dynamic>> result = await db.query(
+      'Size',
+      where: 'Size_ID = ?',
+      whereArgs: [sizeId],
+    );
+
+    // Nếu tìm thấy kết quả, chuyển đổi Map thành đối tượng Size
+    if (result.isNotEmpty) {
+      return Size.fromMap(result.first);
+    }
+
+    // Nếu không có dữ liệu, trả về null
+    return null;
+  }
+
+  static Future<List<String>> getSizesByProductColorId(int productColorId) async {
+    final db = await instance.database;
+
+    final List<Map<String, dynamic>> results = await db.rawQuery('''
+    SELECT s.Size
+    FROM Size s
+    JOIN Product_Size ps ON s.Size_ID = ps.Size_ID
+    WHERE ps.Product_Color_ID = ?
+  ''', [productColorId]);
+
+    List<String> sizes = results.map((row) => row['Size'] as String).toList();
+
+    return sizes;
+  }
+
+
+
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_shoes_shop/data/bloc/auth_bloc/auth_bloc.dart';
+import 'package:flutter_shoes_shop/screen/detail_shop/components/detail_shop_screen.dart';
 import 'package:flutter_shoes_shop/screen/started/components/start_screen.dart';
 
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: StartScreen(),
+          home: DetailShopScreen(productId: 1,),
         ));
   }
 }

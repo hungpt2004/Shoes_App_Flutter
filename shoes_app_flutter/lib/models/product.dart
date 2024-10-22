@@ -20,12 +20,17 @@ class Product {
     };
   }
 
+  // Hàm tạo để chuyển đổi từ Map (cấu trúc dữ liệu trong SQLite) sang đối tượng Product
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
-      productId: map['productId'],
-      name: map['name'],
-      description: map['description'],
-      shopId: map['shopId'],
+      productId: map['Product_ID'],
+      name: map['Name'],
+      description: map['Description'],
+      shopId: map['Brand_ID'],
     );
+  }
+  @override
+  String toString() {
+    return 'Product{productId: $productId, name: $name, description: $description, shopId: $shopId}';
   }
 }

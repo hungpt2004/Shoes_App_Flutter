@@ -7,17 +7,11 @@ class Size {
     required this.size,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'sizeId': sizeId,
-      'size': size,
-    };
-  }
-
+  // Chuyển đổi từ Map thành đối tượng Size
   factory Size.fromMap(Map<String, dynamic> map) {
     return Size(
-      sizeId: map['sizeId'],
-      size: map['size'],
+      sizeId: map['Size_ID'],
+      size: map['Size'],
     );
   }
 }
