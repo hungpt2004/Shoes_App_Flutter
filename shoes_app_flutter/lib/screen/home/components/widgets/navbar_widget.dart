@@ -53,7 +53,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
           margin: EdgeInsets.only(top: 20),
           width: 70,
           height: 100,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white,
           ),
@@ -64,7 +64,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
               height: 80,
               child: FloatingActionButton(
                 backgroundColor: StyleColor.lightBlueColor,
-                shape: CircleBorder(),
+                shape: const CircleBorder(),
                 elevation: 4,
                 onPressed: () {},
                 child: Image.asset(
@@ -80,8 +80,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
           elevation: 4,
           height: 70,
           color: Colors.white,
-          shape: CircularNotchedRectangle(),
-          padding: EdgeInsets.all(2),
+          shape: const CircularNotchedRectangle(),
+          padding: const EdgeInsets.all(2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

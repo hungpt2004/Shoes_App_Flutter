@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d8f68d6-36b9-4367-8995-ad51a2676056" name="Changes" comment="" />
+    <list default="true" id="7d8f68d6-36b9-4367-8995-ad51a2676056" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/shoes_app_flutter/assets/images/icons/all.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/data/bloc/favorite_bloc/favorite_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/data/bloc/favorite_bloc/favorite_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/data/bloc/favorite_bloc/favorite_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/data/bloc/auth_bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/data/bloc/auth_bloc/auth_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/data/sql_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/data/sql_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/models/account.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/models/account.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/detail_shop/components/detail_shop_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/detail_shop/components/detail_shop_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/button_category_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/button_category_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/button_subtitle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/button_subtitle.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/navbar_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/navbar_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/new_arrivals_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/new_arrivals_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/popular_shoes_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/popular_shoes_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/shoes_card_detail_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/lib/screen/home/components/widgets/shoes_card_detail_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoes_app_flutter/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/shoes_app_flutter/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +59,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "hungpt",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/WorkSpace/FLUTTER_WORKSPACE/Shoes_App_Flutter/shoes_app_flutter",
     "settings.editor.selected.configurable": "com.google.gct.login2.settings.GoogleLoginApplicationSettingsConfigurableProvider",

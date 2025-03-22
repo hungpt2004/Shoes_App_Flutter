@@ -79,4 +79,5 @@ class Account {
       status: map['Status'],
     );
   }
+
 }

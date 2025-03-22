@@ -19,21 +19,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Map<String, dynamic>> _shoes = [];
+  List<Map<String, dynamic>> shoes = [];
   int activeIndex = 0;
   bool isLoading = false;
+  String selectedBrand = "ALL";
 
   @override
   void initState() {
     super.initState();
     _startLoad();
-  }
-
-  Future<void> _fetchData() async {
-    final data = await DBHelper.instance.getProductDetails();
-    setState(() {
-      _shoes = data;
-    });
   }
 
   _startLoad() async {
@@ -43,9 +37,30 @@ class _HomeScreenState extends State<HomeScreen> {
     await Future.delayed(const Duration(seconds: 1));
     setState(() {
       isLoading = false;
-    });
-    _fetchData();
+      fetchDataShoes();
+    }); // Fetch all products initially
   }
+
+
+  void chooseBrand(String brand){
+    setState(() {
+      selectedBrand = brand;
+      refresh();
+    });
+  }
+
+  Future<void> fetchDataShoes() async {
+    final data = selectedBrand == "ALL" ? await DBHelper.instance.getProductDetails() : await DBHelper.instance.getProductByBrand(selectedBrand);
+    setState((){
+      print(selectedBrand);
+      shoes = data;
+    });
+  }
+
+  void refresh(){
+    fetchDataShoes();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,17 +68,20 @@ class _HomeScreenState extends State<HomeScreen> {
         ? Scaffold(
             backgroundColor: StyleColor.backgroundColor,
             body: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    color: Colors.blueAccent,
-                  ),
-                  StyleSpace.space(0, 20),
-                  Text("Wait a few second !",style: StyleText.styleAirbnb(18, FontWeight.w400, Colors.blueAccent),)
-                ],
-              )
-            ),
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const CircularProgressIndicator(
+                  color: Colors.blueAccent,
+                ),
+                StyleSpace.space(0, 20),
+                Text(
+                  "Wait a few second !",
+                  style: StyleText.styleAirbnb(
+                      18, FontWeight.w400, Colors.blueAccent),
+                )
+              ],
+            )),
           )
         : Scaffold(
             resizeToAvoidBottomInset: false,
@@ -74,11 +92,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 StyleSpace.space(24, 0),
                 const SearchWidget(),
                 StyleSpace.space(32, 0),
-                const ButtonCategoryWidget(),
+                ButtonCategoryWidget(
+                  onBrandSelected: chooseBrand,
+                  selectedBrand: selectedBrand,
+                ),
                 StyleSpace.space(24, 0),
                 _seeAll("Popular Shoes"),
                 StyleSpace.space(16, 0),
                 PopularCardWidget(
+                  shoes: shoes,
+                  selectBrand: selectedBrand,
                   sizeWidget: 201,
                   isPopular: true,
                 ),
@@ -86,6 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 _seeAll("New Arrivals Shoes"),
                 StyleSpace.space(16, 0),
                 PopularCardWidget(
+                  shoes: shoes,
+                  selectBrand: selectedBrand,
                   sizeWidget: 120,
                   isPopular: false,
                 ),

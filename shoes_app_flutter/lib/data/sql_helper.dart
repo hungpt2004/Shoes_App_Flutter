@@ -19,7 +19,11 @@ class DBHelper {
   }
 
   Future<Database> _initDB(String filePath) async {
+    //Return default folder path to save SQLite
+
     final dbPath = await getDatabasesPath();
+
+
     final path = join(dbPath, filePath);
 
     return await openDatabase(path, version: 1, onCreate: _createDB);
@@ -31,7 +35,7 @@ class DBHelper {
     CREATE TABLE Shop (
       Shop_ID INTEGER PRIMARY KEY AUTOINCREMENT,
       Name NVARCHAR(255),
-      Description NTEXT,
+      Description TEXT,
       PhoneNumber NVARCHAR(20),
       Address NVARCHAR(255),
       Email NVARCHAR(255)
@@ -634,8 +638,6 @@ class DBHelper {
   }
 
 
-
-
   // CRUD methods for Shop table
   Future<int> createShop(Map<String, dynamic> shop) async {
     final db = await instance.database;
@@ -714,7 +716,7 @@ class DBHelper {
   }
 
   Future<List<Map<String, dynamic>>> getProductDetails() async {
-    final db = await database; // Đảm bảo bạn đã khởi tạo SQLite database
+    final db = await instance.database; // Đảm bảo bạn đã khởi tạo SQLite database
     return await db.rawQuery('''
     SELECT 
         Product.Product_ID,
@@ -735,6 +737,30 @@ class DBHelper {
   ''');
   }
 
+  Future<List<Map<String, dynamic>>> getProductByBrand(String brandName) async {
+    final db = await instance.database; // Đảm bảo bạn đã khởi tạo SQLite database
+    return await db.rawQuery('''
+    SELECT 
+        Brand.Name,
+        Product.Product_ID,
+        Product.Name AS Product_Name,
+        Product.Description,
+        Product_Color.Url_Image AS Product_Image,
+        Color.Name AS Color_Name,
+        Size.Size AS Size_Name,
+        Product_Size.Price,
+        Product_Size.Amount
+    FROM 
+        Product
+    LEFT JOIN Brand ON Product.Brand_ID = Brand.Brand_ID
+    LEFT JOIN Product_Image ON Product.Product_ID = Product_Image.Product_ID
+    LEFT JOIN Product_Color ON Product.Product_ID = Product_Color.Product_ID
+    LEFT JOIN Color ON Product_Color.Color_ID = Color.Color_ID
+    LEFT JOIN Product_Size ON Product_Color.Product_Color_ID = Product_Size.Product_Color_ID
+    LEFT JOIN Size ON Product_Size.Size_ID = Size.Size_ID
+    WHERE Brand.Name = ? 
+  ''',[brandName]);
+  }
 
 
   Future<int> updateProduct(Map<String, dynamic> product) async {
@@ -879,6 +905,19 @@ class DBHelper {
     final db = await instance.database;
     return await db.delete('Voucher', where: 'Voucher_ID = ?', whereArgs: [id]);
   }
+
+
+  // CRUD methods for Favorite
+  Future<int> createFavoriteProduct(Map<String,dynamic> favoriteProduct) async {
+    final db = await instance.database;
+    return await db.insert('Favorite', favoriteProduct);
+  }
+
+  Future<List<Map<String, dynamic>>> getFavoriteProductByAccountID(int accountId) async {
+    final db = await instance.database;
+    return await db.query('Favorite', where: 'Account_ID = ?', whereArgs: [accountId]);
+  }
+
 
   // CRUD methods for Product Image table
   Future<int> createProductImage(Map<String, dynamic> productImage) async {
